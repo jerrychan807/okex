@@ -7,7 +7,9 @@ import (
 
 type (
 	GetInstruments struct {
-		responses.Basic
+		// responses.Basic
+		Code        string                   `json:"code"`
+		Msg         string                   `json:"msg"`
 		Instruments []*publicdata.Instrument `json:"data,omitempty"`
 	}
 	GetDeliveryExerciseHistory struct {
