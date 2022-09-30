@@ -7,17 +7,17 @@ import (
 type (
 	PlaceOrder struct {
 		ID         string            `json:"-"`
-		InstID     string            `json:"instId"`
-		Ccy        string            `json:"ccy,omitempty"`
-		ClOrdID    string            `json:"clOrdId,omitempty"`
-		Tag        string            `json:"tag,omitempty"`
-		ReduceOnly bool              `json:"reduceOnly,omitempty"`
-		Sz         float64           `json:"sz,string"`
-		Px         float64           `json:"px,omitempty,string"`
-		TdMode     okex.TradeMode    `json:"tdMode"`
-		Side       okex.OrderSide    `json:"side"`
-		PosSide    okex.PositionSide `json:"posSide,omitempty"`
-		OrdType    okex.OrderType    `json:"ordType"`
+		InstID     string            `json:"instId"`               // 产品ID，如 BTC-USD-190927-5000-C
+		Ccy        string            `json:"ccy,omitempty"`        // 保证金币种，仅适用于单币种保证金模式下的全仓杠杆订单
+		ClOrdID    string            `json:"clOrdId,omitempty"`    // 客户自定义订单ID,字母（区分大小写）与数字的组合，可以是纯字母、纯数字且长度要在1-32位之间
+		Tag        string            `json:"tag,omitempty"`        // 订单标签,字母（区分大小写）与数字的组合，可以是纯字母、纯数字，且长度在1-16位之间。
+		ReduceOnly bool              `json:"reduceOnly,omitempty"` // 是否只减仓，true 或 false，默认false
+		Sz         float64           `json:"sz,string"`            // 委托数量
+		Px         float64           `json:"px,omitempty,string"`  // 委托价格，仅适用于limit、post_only、fok、ioc类型的订单
+		TdMode     okex.TradeMode    `json:"tdMode"`               // 交易模式,保证金模式：isolated：逐仓 ；cross：全仓,非保证金模式：cash：非保证金
+		Side       okex.OrderSide    `json:"side"`                 // 订单方向,buy：买， sell：卖
+		PosSide    okex.PositionSide `json:"posSide,omitempty"`    // 持仓方向,在双向持仓模式下必填，且仅可选择 long 或 short。 仅适用交割、永续
+		OrdType    okex.OrderType    `json:"ordType"`              // 订单类型,market：市价单,limit：限价单
 		TgtCcy     okex.QuantityType `json:"tgtCcy,omitempty"`
 	}
 	CancelOrder struct {

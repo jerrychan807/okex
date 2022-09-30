@@ -7,11 +7,15 @@ import (
 
 type (
 	GetBalance struct {
-		responses.Basic
+		//responses.Basic
+		Code     string            `json:"code"`
+		Msg      string            `json:"msg"`
 		Balances []*models.Balance `json:"data,omitempty"`
 	}
 	GetPositions struct {
-		responses.Basic
+		//responses.Basic
+		Code      string             `json:"code"`
+		Msg       string             `json:"msg"`
 		Positions []*models.Position `json:"data"`
 	}
 	GetAccountAndPositionRisk struct {

@@ -38,7 +38,8 @@ func (c *Account) GetBalance(req requests.GetBalance) (response responses.GetBal
 	defer res.Body.Close()
 	d := json.NewDecoder(res.Body)
 	err = d.Decode(&response)
-
+	//fmt.Printf("%+v \n", response.Balances[0])
+	//fmt.Printf("%+v \n", response.Balances[0].Details[0])
 	return
 }
 
@@ -59,6 +60,9 @@ func (c *Account) GetPositions(req requests.GetPositions) (response responses.Ge
 	if err != nil {
 		return
 	}
+	//body, _ := ioutil.ReadAll(res.Body)
+	//bodyStr := string(body)
+	//fmt.Println(bodyStr)
 	defer res.Body.Close()
 	d := json.NewDecoder(res.Body)
 	err = d.Decode(&response)
