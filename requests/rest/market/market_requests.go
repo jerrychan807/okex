@@ -3,6 +3,9 @@ package market
 import "github.com/amir-the-h/okex"
 
 type (
+	GetTicker struct {
+		InstId string `json:"instId,omitempty"`
+	}
 	GetTickers struct {
 		Uly      string              `json:"uly,omitempty"`
 		InstType okex.InstrumentType `json:"instType"`

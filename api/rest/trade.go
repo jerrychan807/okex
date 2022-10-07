@@ -2,6 +2,7 @@ package rest
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/amir-the-h/okex"
 	requests "github.com/amir-the-h/okex/requests/rest/trade"
 	responses "github.com/amir-the-h/okex/responses/trade"
@@ -223,6 +224,7 @@ func (c *Trade) GetTransactionDetails(req requests.TransactionDetails, arch bool
 func (c *Trade) PlaceAlgoOrder(req requests.PlaceAlgoOrder) (response responses.PlaceAlgoOrder, err error) {
 	p := "/api/v5/trade/order-algo"
 	m := okex.S2M(req)
+	fmt.Printf("%+v\n", m)
 	res, err := c.client.Do(http.MethodPost, p, true, m)
 	if err != nil {
 		return

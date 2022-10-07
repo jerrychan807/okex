@@ -35,7 +35,9 @@ type (
 		PositionModes []*models.PositionMode `json:"data"`
 	}
 	Leverage struct {
-		responses.Basic
+		//responses.Basic
+		Code      string             `json:"code"`
+		Msg       string             `json:"msg"`
 		Leverages []*models.Leverage `json:"data"`
 	}
 	GetMaxBuySellAmount struct {
