@@ -80,6 +80,7 @@ func (c *Trade) CandleOrder(req []requests.CancelOrder) (response responses.Plac
 		p = "/api/trade/cancel-batch-orders"
 	}
 	m := okex.S2M(tmp)
+	fmt.Printf("%+v\n", m)
 	res, err := c.client.Do(http.MethodPost, p, true, m)
 	if err != nil {
 		return
@@ -240,10 +241,16 @@ func (c *Trade) PlaceAlgoOrder(req requests.PlaceAlgoOrder) (response responses.
 // Cancel unfilled algo orders(trigger order, oco order, conditional order). A maximum of 10 orders can be canceled at a time. Request parameters should be passed in the form of an array.
 //
 // https://www.okex.com/docs-v5/en/#rest-api-trade-cancel-algo-order
-func (c *Trade) CancelAlgoOrder(req requests.CancelAlgoOrder) (response responses.CancelAlgoOrder, err error) {
+func (c *Trade) CancelAlgoOrder(reqs []requests.CancelAlgoOrder) (response responses.CancelAlgoOrder, err error) {
 	p := "/api/v5/trade/cancel-algos"
-	m := okex.S2M(req)
-	res, err := c.client.Do(http.MethodPost, p, true, m)
+	var maps []map[string]string
+	for _, req := range reqs {
+		m := okex.S2M(req)
+		maps = append(maps, m)
+	}
+
+	fmt.Printf("%+v \n", maps)
+	res, err := c.client.Dos(http.MethodPost, p, true, maps...)
 	if err != nil {
 		return
 	}
