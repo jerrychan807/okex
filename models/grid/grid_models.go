@@ -1,6 +1,6 @@
 package grid
 
-import "github.com/amir-the-h/okex"
+import "github.com/jerrychan807/okex"
 
 type (
 	GridOrder struct {

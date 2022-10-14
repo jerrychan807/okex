@@ -3,9 +3,9 @@ package rest
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/amir-the-h/okex"
-	requests "github.com/amir-the-h/okex/requests/rest/trade"
-	responses "github.com/amir-the-h/okex/responses/trade"
+	"github.com/jerrychan807/okex"
+	requests "github.com/jerrychan807/okex/requests/rest/trade"
+	responses "github.com/jerrychan807/okex/responses/trade"
 	"net/http"
 )
 

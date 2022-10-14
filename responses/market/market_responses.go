@@ -1,7 +1,7 @@
 package market
 
 import (
-	"github.com/amir-the-h/okex/models/market"
+	"github.com/jerrychan807/okex/models/market"
 )
 
 type (

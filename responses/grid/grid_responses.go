@@ -1,7 +1,7 @@
 package grid
 
 import (
-	"github.com/amir-the-h/okex/models/grid"
+	"github.com/jerrychan807/okex/models/grid"
 )
 
 type (
