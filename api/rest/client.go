@@ -24,6 +24,7 @@ type ClientRest struct {
 	Market      *Market
 	PublicData  *PublicData
 	TradeData   *TradeData
+	Grid        *Grid
 	apiKey      string
 	secretKey   []byte
 	passphrase  string
@@ -49,6 +50,7 @@ func NewClient(apiKey, secretKey, passphrase string, baseURL okex.BaseURL, desti
 	c.Market = NewMarket(c)
 	c.PublicData = NewPublicData(c)
 	c.TradeData = NewTradeData(c)
+	c.Grid = NewGrid(c)
 	return c
 }
 
