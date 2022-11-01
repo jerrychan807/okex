@@ -13,7 +13,7 @@ type (
 		Tag        string            `json:"tag,omitempty"`        // 订单标签,字母（区分大小写）与数字的组合，可以是纯字母、纯数字，且长度在1-16位之间。
 		ReduceOnly bool              `json:"reduceOnly,omitempty"` // 是否只减仓，true 或 false，默认false
 		Sz         float64           `json:"sz,string"`            // 委托数量
-		Px         float64           `json:"px,omitempty,string"`  // 委托价格，仅适用于limit、post_only、fok、ioc类型的订单
+		Px         string            `json:"px,omitempty"`         // 委托价格，仅适用于limit、post_only、fok、ioc类型的订单
 		TdMode     okex.TradeMode    `json:"tdMode"`               // 交易模式,保证金模式：isolated：逐仓 ；cross：全仓,非保证金模式：cash：非保证金
 		Side       okex.OrderSide    `json:"side"`                 // 订单方向,buy：买， sell：卖
 		PosSide    okex.PositionSide `json:"posSide,omitempty"`    // 持仓方向,在双向持仓模式下必填，且仅可选择 long 或 short。 仅适用交割、永续
@@ -83,9 +83,9 @@ type (
 		TWAPOrder
 	}
 	StopOrder struct {
-		TpTriggerPx     float64 `json:"tpTriggerPx,string,omitempty"`
+		TpTriggerPx     string  `json:"tpTriggerPx,omitempty"`
 		TpTriggerPxType string  `json:"tpTriggerPxType"`
-		TpOrdPx         float64 `json:"tpOrdPx,string,omitempty"`
+		TpOrdPx         string  `json:"tpOrdPx,omitempty"`
 		SlTriggerPx     float64 `json:"slTriggerPx,string,omitempty"`
 		SlOrdPx         float64 `json:"slOrdPx,string,omitempty"`
 	}
