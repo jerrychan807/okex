@@ -36,10 +36,11 @@ type (
 		PosSide okex.PositionSide `json:"posSide,omitempty"`
 	}
 	GetMaxBuySellAmount struct {
-		Ccy    string         `json:"ccy,omitempty"`
-		Px     float64        `json:"px,string,omitempty"`
-		InstID []string       `json:"instId"`
-		TdMode okex.TradeMode `json:"tdMode"`
+		Ccy      string         `json:"ccy,omitempty"`
+		Px       float64        `json:"px,string,omitempty"`
+		Leverage float64        `json:"leverage,string,omitempty"`
+		InstID   []string       `json:"instId"`
+		TdMode   okex.TradeMode `json:"tdMode"`
 	}
 	GetMaxAvailableTradeAmount struct {
 		Ccy        string         `json:"ccy,omitempty"`
