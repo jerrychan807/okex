@@ -83,11 +83,11 @@ type (
 		TWAPOrder
 	}
 	StopOrder struct {
-		TpTriggerPx     string  `json:"tpTriggerPx,omitempty"`
-		TpTriggerPxType string  `json:"tpTriggerPxType"`
-		TpOrdPx         string  `json:"tpOrdPx,omitempty"`
-		SlTriggerPx     float64 `json:"slTriggerPx,string,omitempty"`
-		SlOrdPx         float64 `json:"slOrdPx,string,omitempty"`
+		TpTriggerPx     string `json:"tpTriggerPx,omitempty"`
+		TpTriggerPxType string `json:"tpTriggerPxType"`
+		TpOrdPx         string `json:"tpOrdPx,omitempty"`
+		SlTriggerPx     string `json:"slTriggerPx,omitempty"`
+		SlOrdPx         string `json:"slOrdPx,omitempty"`
 	}
 	TriggerOrder struct {
 		TriggerPx float64 `json:"triggerPx,string,omitempty"`
