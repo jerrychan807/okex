@@ -39,6 +39,7 @@ type (
 		Category    string              `json:"category"`
 		FeeCcy      string              `json:"feeCcy"`
 		RebateCcy   string              `json:"rebateCcy"`
+		ReduceOnly  string              `json:"reduceOnly"`
 		Px          okex.JSONFloat64    `json:"px"`
 		Sz          okex.JSONInt64      `json:"sz"`
 		Pnl         okex.JSONFloat64    `json:"pnl"`

@@ -23,4 +23,9 @@ type (
 		Arg    *events.Argument `json:"arg"`
 		Orders []*trade.Order   `json:"data"`
 	}
+
+	AlgoOrder struct {
+		Arg        *events.Argument   `json:"arg"`
+		AlgoOrders []*trade.AlgoOrder `json:"data"`
+	}
 )

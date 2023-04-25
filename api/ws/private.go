@@ -17,6 +17,7 @@ type Private struct {
 	pCh   chan *private.Position
 	bnpCh chan *private.BalanceAndPosition
 	oCh   chan *private.Order
+	aoCh  chan *private.AlgoOrder
 }
 
 // NewPrivate returns a pointer to a fresh Private
@@ -116,6 +117,22 @@ func (c *Private) UOrder(req requests.Order, rCh ...bool) error {
 	return c.Unsubscribe(true, []okex.ChannelName{"orders"}, m)
 }
 
+func (c *Private) AlgoOrder(req requests.AlgoOrder, ch ...chan *private.AlgoOrder) error {
+	m := okex.S2M(req)
+	if len(ch) > 0 {
+		c.aoCh = ch[0]
+	}
+	return c.Subscribe(true, []okex.ChannelName{"orders-algo"}, m)
+}
+
+func (c *Private) UAlgoOrder(req requests.AlgoOrder, rCh ...bool) error {
+	m := okex.S2M(req)
+	if len(rCh) > 0 && rCh[0] {
+		c.aoCh = nil
+	}
+	return c.Unsubscribe(true, []okex.ChannelName{"orders-algo"}, m)
+}
+
 func (c *Private) Process(data []byte, e *events.Basic) bool {
 	if e.Event == "" && e.Arg != nil && e.Data != nil && len(e.Data) > 0 {
 		ch, ok := e.Arg.Get("channel")
@@ -171,6 +188,19 @@ func (c *Private) Process(data []byte, e *events.Basic) bool {
 			go func() {
 				if c.oCh != nil {
 					c.oCh <- &e
+				}
+				c.StructuredEventChan <- e
+			}()
+			return true
+		case "orders-algo":
+			e := private.AlgoOrder{}
+			err := json.Unmarshal(data, &e)
+			if err != nil {
+				return false
+			}
+			go func() {
+				if c.aoCh != nil {
+					c.aoCh <- &e
 				}
 				c.StructuredEventChan <- e
 			}()

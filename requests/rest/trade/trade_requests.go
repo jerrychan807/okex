@@ -87,6 +87,7 @@ type (
 		TpTriggerPxType string `json:"tpTriggerPxType"`
 		TpOrdPx         string `json:"tpOrdPx,omitempty"`
 		SlTriggerPx     string `json:"slTriggerPx,omitempty"`
+		SlTriggerPxType string `json:"slTriggerPxType"`
 		SlOrdPx         string `json:"slOrdPx,omitempty"`
 	}
 	TriggerOrder struct {
