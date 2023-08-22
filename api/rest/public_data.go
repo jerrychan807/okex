@@ -155,6 +155,23 @@ func (c *PublicData) GetSystemTime() (response responses.GetSystemTime, err erro
 	return
 }
 
+// GetFundingRate
+// GetFundingRate
+//
+// https://www.okx.com/docs-v5/zh/#public-data-rest-api-get-funding-rate
+func (c *PublicData) GetFundingRate(req requests.GetFundingRate) (response responses.GetFundingRate, err error) {
+	p := "/api/v5/public/funding-rate"
+	m := okex.S2M(req)
+	res, err := c.client.Do(http.MethodGet, p, false, m)
+	if err != nil {
+		return
+	}
+	defer res.Body.Close()
+	d := json.NewDecoder(res.Body)
+	err = d.Decode(&response)
+	return
+}
+
 // GetLiquidationOrders
 // Retrieve information on liquidation orders in the last 7 days.
 //
