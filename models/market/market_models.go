@@ -136,10 +136,10 @@ func (o *OrderBookEntity) UnmarshalJSON(buf []byte) error {
 
 func (c *Candle) UnmarshalJSON(buf []byte) error {
 	var (
-		o, h, l, cl, vol, volCcy, ts string
+		o, h, l, cl, vol, volCcy, ts, volCcyQuote, confirm string
 		err                          error
 	)
-	tmp := []interface{}{&ts, &o, &h, &l, &cl, &vol, &volCcy}
+	tmp := []interface{}{&ts, &o, &h, &l, &cl, &vol, &volCcy, &volCcyQuote, &confirm}
 	wantLen := len(tmp)
 	if err := json.Unmarshal(buf, &tmp); err != nil {
 		return err
@@ -181,6 +181,16 @@ func (c *Candle) UnmarshalJSON(buf []byte) error {
 	}
 
 	c.VolCcy, err = strconv.ParseFloat(volCcy, 64)
+	if err != nil {
+		return err
+	}
+
+	c.VolCcyQuote, err = strconv.ParseFloat(volCcyQuote, 64)
+	if err != nil {
+		return err
+	}
+
+	c.Confirm, err = strconv.Atoi(confirm)
 	if err != nil {
 		return err
 	}
